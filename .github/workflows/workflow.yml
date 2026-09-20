@@ -35,16 +35,16 @@ jobs:
       # Run tests
       - name: Run tests
         env:
-          REVIEW_DB_URL: ${{ secrets.REVIEW_TEST_DB_URL }}
-          REVIEW_DB_USER: ${{ secrets.REVIEW_DB_USER }}
-          REVIEW_DB_PASS: ${{ secrets.REVIEW_DB_PASS }}
+          SPRING_DATASOURCE_URL: ${{ secrets.REVIEW_TEST_DB_URL }}
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.REVIEW_DB_USER }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.REVIEW_DB_PASS }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: mvn -B test
       # Build application
       - name: Build application
         env:
-          REVIEW_DB_URL: ${{ secrets.REVIEW_DB_URL }}
-          REVIEW_DB_USER: ${{ secrets.REVIEW_DB_USER }}
-          REVIEW_DB_PASS: ${{ secrets.REVIEW_DB_PASS }}
+          SPRING_DATASOURCE_URL: ${{ secrets.REVIEW_DB_URL }}
+          SPRING_DATASOURCE_USERNAME: ${{ secrets.REVIEW_DB_USER }}
+          SPRING_DATASOURCE_PASSWORD: ${{ secrets.REVIEW_DB_PASS }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: mvn -B package -DskipTests
