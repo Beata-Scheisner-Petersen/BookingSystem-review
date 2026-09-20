@@ -16,12 +16,12 @@ jobs:
       mysql:
         image: mysql:8
         env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_ROOT_PASS }}
-          MYSQL_DATABASE: ${{ secrets.DATABASE }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.REVIEW_DB_ROOT_PASS }}
+          MYSQL_DATABASE: Review-service
         ports:
           - 3309:3306
         options: >
-          --health-cmd="mysqladmin ping -h localhost -uroot -p${{ secrets.DB_ROOT_PASS }}"
+          --health-cmd="mysqladmin ping -h localhost -uroot -p ${{ secrets.REVIEW_DB_ROOT_PASS }}"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=10
@@ -39,16 +39,16 @@ jobs:
       # Run tests
       - name: Run tests
         env:
-          REVIEW_DB_URL: ${{ secrets.TEST_DB_URL }}
-          REVIEW_DB_USER: ${{ secrets.DB_USER }}
-          REVIEW_DB_PASS: ${{ secrets.DB_PASS }}
+          REVIEW_DB_URL: ${{ secrets.REVIEW_TEST_DB_URL }}
+          REVIEW_DB_USER: ${{ secrets.REVIEW_DB_USER }}
+          REVIEW_DB_PASS: ${{ secrets.REVIEW_DB_PASS }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: mvn -B test
       # Build application
       - name: Build application
         env:
-          REVIEW_DB_URL: ${{ secrets.DB_URL }}
-          REVIEW_DB_USER: ${{ secrets.DB_USER }}
-          REVIEW_DB_PASS: ${{ secrets.DB_PASS }}
+          REVIEW_DB_URL: ${{ secrets.REVIEW_DB_URL }}
+          REVIEW_DB_USER: ${{ secrets.REVIEW_DB_USER }}
+          REVIEW_DB_PASS: ${{ secrets.REVIEW_DB_PASS }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
         run: mvn -B package -DskipTests
