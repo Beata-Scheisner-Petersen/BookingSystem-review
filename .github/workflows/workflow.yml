@@ -58,8 +58,8 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t beatasp/booking-image:${{github.run_number}} .
+          docker build -t beatasp/beatasp/review-service:${{github.run_number}} .
 
       - name: push to Docker Hub
         run: |
-          docker push beatasp/booking-image:${{github.run_number}}
+          docker push beatasp/beatasp/review-service:${{github.run_number}}
