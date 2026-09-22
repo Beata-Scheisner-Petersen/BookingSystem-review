@@ -62,4 +62,4 @@ jobs:
 
       - name: push to Docker Hub
         run: |
-          docker push beatasp/beatasp/review-service:${{github.run_number}}
+          docker push beatasp/review-service:${{github.run_number}}
