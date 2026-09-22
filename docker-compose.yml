@@ -19,7 +19,7 @@ services:
       retries: 10
 
   booking-review:
-    build: .
+    image: beatasp/review-service:latest
     container_name: review-service
     ports:
       - "8083:8083"
